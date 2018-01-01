@@ -1,16 +1,23 @@
 version: '3'
 services:
-  cardano-sl:
-    image: hcvst/cardano-sl:latest
-    network_mode: "host"
+
+  cardano-sl-nix:
+    container_name: cardano-sl
+    build: ./cardano-sl
     ports:
       - "8090:8090"
+    volumes:
+      - cardano-sl-state:/cardano-sl/state-wallet-mainnet
+
   daedalus:
-    depends_on: 
-      - cardano-sl
-    image: hcvst/cardano-daedalus:latest
-    network_mode: "host"
+    container_name: daedalus
+    depends_on:
+      - cardano-sl-nix
+    build: ./daedalus
     environment:
       DISPLAY: "$DISPLAY"
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
+
+volumes:
+  cardano-sl-state:
