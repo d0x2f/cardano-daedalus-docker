@@ -9,7 +9,6 @@ services:
       - "8090:8090"
     volumes:
       - cardano-sl-db:/cardano-sl/state-wallet-mainnet/db
-      - ./tls:/cardano-sl/tls
 
   daedalus:
     container_name: daedalus
@@ -23,7 +22,7 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /tmp/.docker.xauth:/tmp/.docker.xauth
-      - ./tls:/daedalus/tls/ca
+      - ./tls:/home/daedalus/daedalus/tls/ca
 
 volumes:
   cardano-sl-db:

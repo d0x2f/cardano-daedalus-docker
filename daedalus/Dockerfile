@@ -7,8 +7,8 @@ RUN curl -sL https://deb.nodesource.com/setup_6.x | bash
 RUN apt-get install -y nodejs
 RUN useradd -ms /bin/bash daedalus
 USER daedalus
-RUN git clone https://github.com/input-output-hk/daedalus.git .
+RUN git clone https://github.com/input-output-hk/daedalus.git /home/daedalus/daedalus
+WORKDIR /home/daedalus/daedalus
 RUN npm install
 RUN npm run-script package
-WORKDIR /daedalus
 ENTRYPOINT npm start
