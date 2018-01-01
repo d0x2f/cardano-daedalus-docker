@@ -7,9 +7,9 @@ RUN git clone https://github.com/input-output-hk/cardano-sl.git
 WORKDIR /cardano-sl
 RUN git checkout cardano-sl-1.0-mainnet
 RUN nix-build release.nix -A connect.mainnetWallet -o connect-to-mainnet
-COPY bind-all.patch bind-all.patch
+COPY ip-bind-tls.patch ip-bind-tls.patch
 COPY tls tls
-RUN patch connect-to-mainnet bind-all.patch
+RUN patch connect-to-mainnet ip-bind-tls.patch
 EXPOSE 8090
 CMD ./connect-to-mainnet
 
