@@ -4,9 +4,8 @@
    --logs-prefix "state-wallet-mainnet/logs"                               \
    --db-path "state-wallet-mainnet/db"                                     \
    --wallet-db-path 'state-wallet-mainnet/wallet-db'        \
--  --keyfile state-wallet-mainnet/secret.key                   
+-  --keyfile state-wallet-mainnet/secret.key
 +  --keyfile state-wallet-mainnet/secret.key                  \
-+  --wallet-address 0.0.0.0:8090 \
 +  --tlscert tls/server.crt \
 +  --tlskey tls/server.key \
 +  --tlsca tls/ca.crt
