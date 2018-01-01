@@ -8,6 +8,7 @@ services:
       - "8090:8090"
     volumes:
       - cardano-sl-state:/cardano-sl/state-wallet-mainnet
+      - ./tls:/cardano-sl/tls
 
   daedalus:
     container_name: daedalus
@@ -18,6 +19,7 @@ services:
       DISPLAY: "$DISPLAY"
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./tls:/daedalus/tls/ca
 
 volumes:
   cardano-sl-state:
