@@ -5,8 +5,12 @@ RUN echo binary-caches = https://cache.nixos.org https://hydra.iohk.io > /etc/ni
 RUN echo binary-caches-public-keys = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= >> /etc/nix/nix.conf
 RUN git clone https://github.com/input-output-hk/cardano-sl.git
 WORKDIR /cardano-sl
-RUN git checkout cardano-sl-1.0
+RUN git checkout cardano-sl-1.0-mainnet
 RUN nix-build release.nix -A connect.mainnetWallet -o connect-to-mainnet
+COPY bind-all.patch bind-all.patch
+COPY tls tls
+RUN patch connect-to-mainnet bind-all.patch
+VOLUME /cardano-sl/state-wallet-mainnet/db
 EXPOSE 8090
 CMD ./connect-to-mainnet
 
